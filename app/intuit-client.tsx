@@ -906,7 +906,7 @@ function GoogleReviews() {
         {/* Elfsight Google Reviews | AHC REVIEWS */}
         <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
         <div
-          className="elfsight-app-b8027d55-2831-405c-8b79-49bfd1a692f3"
+          className="ahc-reviews elfsight-app-b8027d55-2831-405c-8b79-49bfd1a692f3"
           data-elfsight-app-lazy
         />
       </div>

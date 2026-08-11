@@ -57,3 +57,13 @@ body {
   font-family: var(--font-numeric);
   font-variant-numeric: tabular-nums;
 }
+
+/* Elfsight Google Reviews.
+   The widget is themed for a dark page: it renders every string white. Its
+   review text sits inside dark bubbles and reads fine, but the author names
+   sit directly on our light section, so they came out white on white.
+   Recolor just those. Elfsight hashes its class names per build, so match
+   the stable prefix rather than the full generated name. */
+.ahc-reviews [class*="ReviewAuthorName"] {
+  color: var(--color-navy-900) !important;
+}
