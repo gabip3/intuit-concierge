@@ -132,7 +132,7 @@ export function DrawClient() {
           className="h-14 w-auto sm:h-16"
           priority
         />
-        <h1 className="mt-4 font-playfair text-4xl font-bold text-white sm:text-5xl">
+        <h1 className="mt-4 font-poppins text-4xl font-bold text-white sm:text-5xl">
           Raffle{" "}
           <span className="bg-gradient-to-r from-[#26C4D8] to-[#6FC94D] bg-clip-text text-transparent">
             Draw
@@ -168,7 +168,7 @@ export function DrawClient() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-lux">
                   Winner
                 </p>
-                <p className="mt-1 font-playfair text-4xl font-bold text-white">
+                <p className="mt-1 font-poppins text-4xl font-bold text-white">
                   {winner.name}
                 </p>
                 <p className="mt-2 text-sm text-slate-400">{winner.phone}</p>
@@ -179,7 +179,7 @@ export function DrawClient() {
                 initial={{ opacity: 0.4, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.06 }}
-                className="font-playfair text-3xl font-bold text-slate-200"
+                className="font-poppins text-3xl font-bold text-slate-200"
               >
                 {cyclingName}
               </motion.p>

@@ -101,7 +101,7 @@ export function BookingForm({ onClose, initialService }: BookingFormProps) {
         className="relative w-full max-w-md rounded-2xl border border-white/10 bg-navy-800 p-10 text-center shadow-2xl"
       >
         <CheckCircle className="mx-auto mb-4 h-14 w-14 text-green-light" />
-        <h2 className="font-playfair text-2xl font-bold text-white">
+        <h2 className="font-poppins text-2xl font-bold text-white">
           Request received
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-slate-300">
@@ -135,7 +135,7 @@ export function BookingForm({ onClose, initialService }: BookingFormProps) {
         </button>
       )}
 
-      <h2 className="font-playfair text-2xl font-bold text-white">
+      <h2 className="font-poppins text-2xl font-bold text-white">
         Book a Service
       </h2>
       <p className="mt-1 text-sm text-slate-400">

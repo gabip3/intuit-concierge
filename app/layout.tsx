@@ -1,23 +1,11 @@
 import type { Metadata } from "next";
-import {
-  Inter,
-  Playfair_Display,
-  DM_Serif_Display,
-  Poppins,
-} from "next/font/google";
+import { Inter, DM_Serif_Display, Poppins } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair-src",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
 });
 
 const dmSerif = DM_Serif_Display({
@@ -27,13 +15,13 @@ const dmSerif = DM_Serif_Display({
   weight: ["400"],
 });
 
-// Poppins, the warm friendly sans the main AHC site uses for long body copy
-// where Playfair felt too heavy. Exposed via the `font-poppins` utility.
+// Poppins carries every heading on this site. 700 is included because the
+// display headings render at font-bold.
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins-src",
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -63,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} ${dmSerif.variable} ${poppins.variable}`}
+      className={`${inter.variable} ${dmSerif.variable} ${poppins.variable}`}
     >
       <head>
         <meta name="theme-color" content="#222B4A" />
