@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, MessageCircle } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import { BookingForm } from "@/components/booking-form";
 import { CallBellIcon } from "@/components/icons/call-bell";
 import { PhosphorIcon, type PhosphorIconName } from "@/components/icons/phosphor";
@@ -15,14 +15,17 @@ import { PhosphorIcon, type PhosphorIconName } from "@/components/icons/phosphor
  * actions. Kept deliberately separate from the full page at `/`.
  */
 
-const WHATSAPP_URL =
-  "https://wa.me/16787022678?text=" +
+/* SMS deep link to the AHC line, prefilled. `?&body=` is the form both iOS
+   and Android accept. */
+const TEXT_URL =
+  "sms:+16787022678?&body=" +
   encodeURIComponent(
     "Hi! I'm an Intuit employee and I'd like to ask my Concierge about a service."
   );
 
 const INSTAGRAM_URL = "https://www.instagram.com/atlantahomeconcierge/";
 const YOUTUBE_URL = "http://www.youtube.com/@AtlantaHomeConcierge";
+const AHC_WORLD_URL = "https://www.atlantahomeconcierge.com/ahc-world";
 
 type Action = {
   label: string;
@@ -53,10 +56,17 @@ const actions: Action[] = [
     href: "/#faq",
   },
   {
-    label: "Ask Your Concierge",
-    sub: "Message us on WhatsApp",
+    label: "Text Us",
+    sub: "Ask your Concierge anything",
     icon: "chat-circle-text",
-    href: WHATSAPP_URL,
+    href: TEXT_URL,
+    external: true,
+  },
+  {
+    label: "AHC World",
+    sub: "Explore everything we do",
+    icon: "globe-hemisphere-west",
+    href: AHC_WORLD_URL,
     external: true,
   },
 ];
@@ -202,7 +212,6 @@ export function TapClient() {
           {[
             { url: INSTAGRAM_URL, icon: "instagram-logo" as const, label: "Instagram" },
             { url: YOUTUBE_URL, icon: "youtube-logo" as const, label: "YouTube" },
-            { url: WHATSAPP_URL, icon: null, label: "WhatsApp" },
           ].map((s) => (
             <a
               key={s.label}
@@ -212,15 +221,11 @@ export function TapClient() {
               aria-label={s.label}
               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] transition-all duration-300 hover:border-white/25 hover:bg-white/[0.09] active:scale-95"
             >
-              {s.icon ? (
-                <PhosphorIcon
-                  name={s.icon}
-                  gradientId={`tap-social-${s.icon}`}
-                  className="h-5 w-5"
-                />
-              ) : (
-                <MessageCircle className="h-5 w-5 text-[#6FC94D]" />
-              )}
+              <PhosphorIcon
+                name={s.icon}
+                gradientId={`tap-social-${s.icon}`}
+                className="h-5 w-5"
+              />
             </a>
           ))}
         </motion.div>

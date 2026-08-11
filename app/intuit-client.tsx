@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Script from "next/script";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowDown, Phone, Check, MapPin, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -11,9 +10,11 @@ import { BookingForm } from "@/components/booking-form";
 import { CallBellIcon } from "@/components/icons/call-bell";
 import { PhosphorIcon, type PhosphorIconName } from "@/components/icons/phosphor";
 
-/* WhatsApp deep link, same number used across the AHC site */
-const WHATSAPP_URL =
-  "https://wa.me/16787022678?text=" +
+/* SMS deep link to the AHC line, prefilled. Texting is what this audience
+   actually uses, so it beats WhatsApp here. The `?&body=` form is the one
+   both iOS and Android accept. */
+const TEXT_URL =
+  "sms:+16787022678?&body=" +
   encodeURIComponent(
     "Hi! I'm an Intuit employee and I'd like to ask my Concierge about a service."
   );
@@ -121,6 +122,40 @@ const stats = [
 
 const INSTAGRAM_URL = "https://www.instagram.com/atlantahomeconcierge/";
 
+/* Client testimonials, carried over verbatim from the AHC site's own
+   testimonials section. Kept as static content so the section never depends
+   on a third-party widget loading. */
+const testimonials = [
+  {
+    name: "Caroline W.",
+    role: "Buckhead Homeowner",
+    years: 8,
+    quote:
+      "Before AHC, I was managing six different vendors just to keep my household running. Now I make one call. They handle my housekeeper, the chef for our dinner parties, the kids’ nanny schedule, even our dog walker. It’s the most valuable service I’ve ever invested in.",
+  },
+  {
+    name: "Patricia L.",
+    role: "Midtown Executive",
+    years: 4,
+    quote:
+      "As a CEO, my time is my most valuable asset. AHC’s personal assistant handles my dry cleaning, grocery shopping, and even coordinates with my private chef for meal prep. I’ve reclaimed 15+ hours a week. The ROI is immeasurable.",
+  },
+  {
+    name: "David & Rachel M.",
+    role: "Sandy Springs Family",
+    years: 3,
+    quote:
+      "We moved from New York and couldn’t find the level of household help we were used to. AHC matched us with an incredible housekeeper and a Montessori-trained nanny within a week. The vetting process gave us peace of mind we didn’t even know we needed.",
+  },
+  {
+    name: "The Henderson Family",
+    role: "Decatur Homeowners",
+    years: 6,
+    quote:
+      "We started with just bi-weekly housekeeping. Now we couldn’t imagine life without our AHC team. They painted our entire interior, maintain our yard equipment, and even house-sit when we travel. They feel like family.",
+  },
+];
+
 const faqs: { question: string; answer: string; highlight?: string }[] = [
   {
     question: "What is Intuit Lifestyle Services?",
@@ -214,7 +249,7 @@ export function IntuitClient() {
       <Services onBook={() => setBookingOpen(true)} />
       <Privileges onBook={() => setBookingOpen(true)} />
       <OnSitePresence />
-      <GoogleReviews />
+      <Testimonials />
       <Faq />
       <FinalCta onBook={() => setBookingOpen(true)} />
       <IntuitFooter />
@@ -782,7 +817,7 @@ function Services({ onBook }: { onBook: () => void }) {
             we already do it.
           </p>
           <a
-            href={WHATSAPP_URL}
+            href={TEXT_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 rounded-xl border border-lux/25 bg-lux/[0.06] px-6 py-3.5 text-sm font-semibold text-lux transition-all duration-300 hover:border-lux/50 hover:bg-lux/[0.12] hover:shadow-lg hover:shadow-lux/10"
@@ -908,13 +943,21 @@ function OnSitePresence() {
   );
 }
 
-/* ------------------------------ Google Reviews ------------------------------ */
+/* -------------------------------- Testimonials ------------------------------- */
 
-function GoogleReviews() {
+function Testimonials() {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
   return (
-    <section className="relative overflow-hidden bg-white px-6 py-20 lg:py-24">
+    <section ref={ref} className="relative overflow-hidden bg-white px-6 py-20 lg:py-24">
       <div className="mx-auto max-w-5xl">
-        <div className="mb-10 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="mb-12 text-center"
+        >
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-green-emerald">
             Our Reviews
           </span>
@@ -924,41 +967,58 @@ function GoogleReviews() {
               Say
             </span>
           </h2>
-        </div>
-        {/* Elfsight Google Reviews | AHC REVIEWS */}
-        <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
-        <div
-          className="ahc-reviews elfsight-app-b8027d55-2831-405c-8b79-49bfd1a692f3"
-          data-elfsight-app-lazy
-        />
+        </motion.div>
 
-        {/* Shown only while the widget container is still empty, so the
-            section never renders as a blank band if Elfsight fails to load
-            or the plan's view quota runs out. Pure CSS, see globals.css. */}
-        <div className="ahc-reviews-fallback text-center">
-          <div className="mb-4 flex items-center justify-center gap-1.5">
-            {Array.from({ length: 5 }, (_, i) => (
-              <PhosphorIcon
-                key={i}
-                name="star"
-                gradientId={`rev-star-${i}`}
-                className="h-6 w-6"
-              />
-            ))}
-          </div>
-          <p className="text-base text-slate-600">
-            Two decades of five-star service across metro Atlanta.
-          </p>
+        <div className="grid gap-5 md:grid-cols-2">
+          {testimonials.map((t, i) => (
+            <motion.figure
+              key={t.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
+              className="flex flex-col rounded-2xl border border-navy-900/[0.08] bg-surface p-6 shadow-sm shadow-navy-900/[0.04] sm:p-7"
+            >
+              <div className="mb-4 flex gap-1">
+                {Array.from({ length: 5 }, (_, s) => (
+                  <PhosphorIcon
+                    key={s}
+                    name="star"
+                    gradientId={`star-${i}-${s}`}
+                    className="h-4 w-4"
+                  />
+                ))}
+              </div>
+              <blockquote className="flex-1 text-sm leading-relaxed text-slate-600 sm:text-base">
+                {t.quote}
+              </blockquote>
+              <figcaption className="mt-5 border-t border-navy-900/[0.06] pt-4">
+                <span className="block text-sm font-bold text-navy-900">
+                  {t.name}
+                </span>
+                <span className="block text-xs text-slate-500">
+                  {t.role} &middot; {t.years} years with AHC
+                </span>
+              </figcaption>
+            </motion.figure>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-10 text-center"
+        >
           <a
             href="https://www.atlantahomeconcierge.com/reviews"
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-6 inline-flex items-center gap-2 rounded-xl border border-navy-900/15 bg-white px-6 py-3.5 text-sm font-semibold text-navy-900 shadow-sm transition-all duration-300 hover:border-[#6FC94D]/50 hover:shadow-md"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-navy-900 transition-colors hover:text-green-emerald"
           >
-            Read Our Reviews
+            Read more reviews
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -1088,7 +1148,7 @@ function Faq() {
             Still have a question? Your Concierge is one message away.
           </p>
           <a
-            href={WHATSAPP_URL}
+            href={TEXT_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 rounded-xl border border-lux/25 bg-lux/[0.06] px-6 py-3.5 text-sm font-semibold text-lux transition-all duration-300 hover:border-lux/50 hover:bg-lux/[0.12] hover:shadow-lg hover:shadow-lux/10"
@@ -1147,7 +1207,7 @@ function FinalCta({ onBook }: { onBook: () => void }) {
             <div className="absolute inset-0 -translate-x-full bg-green-light transition-transform duration-500 group-hover:translate-x-0" />
           </button>
           <a
-            href={WHATSAPP_URL}
+            href={TEXT_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-lux/30 hover:bg-white/10 hover:text-white"

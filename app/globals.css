@@ -56,25 +56,10 @@ body {
 }
 
 /* Prominent numerals (stat counters) use the serif display face so figures
-   sit evenly next to Playfair headings. */
+   sit evenly next to the Baskerville headings. */
 .font-numeric {
   font-family: var(--font-numeric);
   font-variant-numeric: tabular-nums;
 }
 
-/* Elfsight Google Reviews.
-   The widget is themed for a dark page: it renders every string white. Its
-   review text sits inside dark bubbles and reads fine, but the author names
-   sit directly on our light section, so they came out white on white.
-   Recolor just those. Elfsight hashes its class names per build, so match
-   the stable prefix rather than the full generated name. */
-.ahc-reviews [class*="ReviewAuthorName"] {
-  color: var(--color-navy-900) !important;
-}
 
-/* The widget injects its markup into the container. Until it does, the
-   container stays empty and the fallback shows; the moment anything lands
-   inside, the fallback hides itself. No JavaScript involved. */
-.ahc-reviews:not(:empty) + .ahc-reviews-fallback {
-  display: none;
-}
