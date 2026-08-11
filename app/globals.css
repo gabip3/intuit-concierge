@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+/* Atlanta Home Concierge brand tokens.
+   Mirrors the public marketing side of the main AHC site: navy base, the
+   `lux` premium gold used across components/landing/**, and the official
+   brand green. Kept deliberately small since this site only renders the
+   Intuit benefit page and the event prize wheel. */
+@theme inline {
+  --color-navy-900: #222B4A;
+  --color-navy-800: #2C3A5E;
+  --color-navy-700: #3B4B7A;
+  --color-navy-600: #4F6096;
+  --color-navy-500: #6578B2;
+
+  /* Premium gold, public marketing accent */
+  --color-lux: #CBA135;
+  --color-lux-light: #F0D485;
+  --color-lux-dark: #9A7A22;
+
+  /* Silver, used for the wheel rim and hardware details */
+  --color-silver: #C5CBD4;
+  --color-silver-light: #E2E6EC;
+  --color-silver-dark: #8F96A1;
+
+  /* Official AHC brand green */
+  --color-green: #52A758;
+  --color-green-light: #7DBD82;
+  --color-green-dark: #428646;
+  --color-green-emerald: #047857;
+
+  --color-surface: #f8f9fc;
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-playfair: var(--font-playfair-src), Georgia, serif;
+  --font-numeric: var(--font-numeric-serif), Georgia, serif;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-navy-600) var(--color-navy-900);
+}
+
+body {
+  background-color: var(--color-navy-900);
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: var(--color-lux);
+  color: var(--color-navy-900);
+}
+
+/* Prominent numerals (stat counters) use the serif display face so figures
+   sit evenly next to Playfair headings. */
+.font-numeric {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
+}
