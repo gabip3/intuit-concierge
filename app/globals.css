@@ -33,6 +33,9 @@
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-playfair: var(--font-playfair-src), Georgia, serif;
   --font-numeric: var(--font-numeric-serif), Georgia, serif;
+  /* Poppins, the friendly rounded sans the main site uses for long body
+     copy. Generates the `font-poppins` utility. */
+  --font-poppins: var(--font-poppins-src), "Poppins", system-ui, sans-serif;
 }
 
 * {

@@ -934,7 +934,7 @@ function FaqItem({
       >
         <span
           className={cn(
-            "font-playfair text-lg font-bold transition-colors duration-300 sm:text-xl",
+            "font-poppins text-base font-semibold transition-colors duration-300 sm:text-lg",
             isOpen ? "text-lux" : "text-white group-hover:text-lux"
           )}
         >
@@ -963,11 +963,11 @@ function FaqItem({
             className="overflow-hidden"
           >
             <div className="pb-6 pr-8">
-              <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
+              <p className="font-poppins text-sm leading-relaxed text-slate-300 sm:text-base">
                 {faq.answer}
               </p>
               {faq.highlight && (
-                <p className="mt-4 border-l-2 border-[#6FC94D] bg-white/[0.03] py-3 pl-4 font-playfair text-lg font-bold text-white sm:text-xl">
+                <p className="mt-4 border-l-2 border-[#6FC94D] bg-white/[0.03] py-3 pl-4 font-poppins text-base font-semibold text-white sm:text-lg">
                   {faq.highlight}
                 </p>
               )}
