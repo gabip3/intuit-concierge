@@ -304,6 +304,28 @@ function IntuitHeader({ onBook }: { onBook: () => void }) {
 function Hero({ onBook }: { onBook: () => void }) {
   return (
     <section className="relative flex min-h-svh items-center justify-center overflow-hidden bg-navy-900 pt-24 pb-16 sm:pt-28">
+      {/* Atlanta at night. Slow drift keeps it alive without pulling focus. */}
+      <motion.div
+        initial={{ scale: 1.08, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
+        className="pointer-events-none absolute inset-0"
+      >
+        <Image
+          src="/images/atlanta-night.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </motion.div>
+
+      {/* Fade. Solid navy at both edges so the photo melts into the sections
+          above and below; the middle stays dark enough for white text. */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-900/75 to-navy-900" />
+      <div className="pointer-events-none absolute inset-0 bg-navy-900/45" />
+
       {/* Animated gradient orbs */}
       <div className="pointer-events-none absolute inset-0">
         <motion.div
