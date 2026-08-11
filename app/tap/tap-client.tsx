@@ -78,7 +78,7 @@ export function TapClient() {
     <main className="relative flex min-h-svh flex-col items-center overflow-hidden bg-navy-900 px-5 py-10">
       {/* Ambient glow */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -right-32 top-0 h-[420px] w-[420px] rounded-full bg-lux/[0.06] blur-[110px]" />
+        <div className="absolute -right-32 top-0 h-[420px] w-[420px] rounded-full bg-intuit/[0.06] blur-[110px]" />
         <div className="absolute -left-32 bottom-0 h-[420px] w-[420px] rounded-full bg-green/[0.05] blur-[110px]" />
       </div>
 
@@ -112,7 +112,7 @@ export function TapClient() {
 
           <h1 className="mt-7 font-baskerville text-3xl font-bold leading-tight text-white">
             Intuit Lifestyle{" "}
-            <span className="bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-intuit to-intuit-light bg-clip-text text-transparent">
               Services
             </span>
           </h1>
@@ -145,14 +145,14 @@ export function TapClient() {
                   </span>
                   <span className="block text-xs text-slate-400">{action.sub}</span>
                 </span>
-                <ArrowRight className="h-4 w-4 shrink-0 text-lux transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="h-4 w-4 shrink-0 text-intuit transition-transform duration-300 group-hover:translate-x-1" />
               </>
             );
 
             const base =
               "group flex min-h-[68px] w-full items-center gap-4 rounded-2xl border px-5 py-4 transition-all duration-300 active:scale-[0.98]";
             const style = action.primary
-              ? "border-lux/40 bg-lux/[0.10] hover:border-lux/70 hover:bg-lux/[0.16]"
+              ? "border-intuit/40 bg-intuit/[0.10] hover:border-intuit/70 hover:bg-intuit/[0.16]"
               : "border-white/10 bg-white/[0.04] hover:border-white/25 hover:bg-white/[0.08]";
 
             return (

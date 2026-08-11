@@ -12,7 +12,15 @@
   --color-navy-600: #4F6096;
   --color-navy-500: #6578B2;
 
-  /* Premium gold, public marketing accent */
+  /* Intuit partnership accent: the blue to cyan gradient from the Intuit
+     co-brand lockup. This is the accent on the benefit page and the NFC tag
+     page. Both values clear the contrast floor on the navy background. */
+  --color-intuit: #2FB6E0;
+  --color-intuit-light: #5FE3F0;
+  --color-intuit-dark: #0E7BD1;
+
+  /* Premium gold. Kept for the prize wheel only, where gold is the Golden
+     Bell prize rather than a brand accent. Not used on the other pages. */
   --color-lux: #CBA135;
   --color-lux-light: #F0D485;
   --color-lux-dark: #9A7A22;

@@ -90,7 +90,7 @@ export function BookingForm({ onClose, initialService }: BookingFormProps) {
   }
 
   const inputClass =
-    "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white placeholder:text-slate-500 outline-none transition-colors focus:border-lux/50 focus:bg-white/[0.08]";
+    "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white placeholder:text-slate-500 outline-none transition-colors focus:border-intuit/50 focus:bg-white/[0.08]";
   const labelClass = "mb-1.5 block text-sm font-medium text-slate-300";
 
   if (submitted) {
@@ -219,7 +219,7 @@ export function BookingForm({ onClose, initialService }: BookingFormProps) {
                 onClick={() => setContact(m)}
                 className={`min-h-11 flex-1 rounded-xl border px-4 py-2.5 text-sm font-medium transition-colors ${
                   contact === m
-                    ? "border-lux/50 bg-lux/15 text-lux"
+                    ? "border-intuit/50 bg-intuit/15 text-intuit"
                     : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10"
                 }`}
               >

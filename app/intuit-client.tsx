@@ -303,7 +303,7 @@ function IntuitHeader({ onBook }: { onBook: () => void }) {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-navy-900/95 backdrop-blur-xl border-b border-lux/10 shadow-2xl shadow-black/20"
+          ? "bg-navy-900/95 backdrop-blur-xl border-b border-intuit/10 shadow-2xl shadow-black/20"
           : "bg-transparent"
       )}
     >
@@ -332,7 +332,7 @@ function IntuitHeader({ onBook }: { onBook: () => void }) {
 
           <button
             onClick={onBook}
-            className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-lux/30 bg-lux/10 px-3.5 py-2.5 text-xs font-semibold text-lux transition-all duration-300 hover:border-lux/60 hover:bg-lux/20 hover:shadow-lg hover:shadow-lux/10 sm:px-5 sm:text-sm"
+            className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-intuit/30 bg-intuit/10 px-3.5 py-2.5 text-xs font-semibold text-intuit transition-all duration-300 hover:border-intuit/60 hover:bg-intuit/20 hover:shadow-lg hover:shadow-intuit/10 sm:px-5 sm:text-sm"
           >
             <span className="sm:hidden">Book Now</span>
             <span className="hidden sm:inline">Book a Service</span>
@@ -375,7 +375,7 @@ function Hero({ onBook }: { onBook: () => void }) {
         <motion.div
           animate={{ x: [0, 30, -20, 0], y: [0, -40, 20, 0], scale: [1, 1.1, 0.95, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -right-32 top-1/4 h-[500px] w-[500px] rounded-full bg-lux/[0.05] blur-[100px]"
+          className="absolute -right-32 top-1/4 h-[500px] w-[500px] rounded-full bg-intuit/[0.05] blur-[100px]"
         />
         <motion.div
           animate={{ x: [0, -30, 20, 0], y: [0, 30, -20, 0], scale: [1, 0.9, 1.1, 1] }}
@@ -399,10 +399,10 @@ function Hero({ onBook }: { onBook: () => void }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-8 inline-flex items-center gap-3 rounded-full border border-lux/25 bg-lux/[0.06] px-5 py-2"
+          className="mb-8 inline-flex items-center gap-3 rounded-full border border-intuit/25 bg-intuit/[0.06] px-5 py-2"
         >
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lux" />
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-lux">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-intuit" />
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-intuit">
             Intuit Life Admin Concierge
           </span>
         </motion.div>
@@ -441,7 +441,7 @@ function Hero({ onBook }: { onBook: () => void }) {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-block bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent"
+            className="inline-block bg-gradient-to-r from-intuit to-intuit-light bg-clip-text text-transparent"
           >
             of this?&rdquo;
           </motion.span>
@@ -488,7 +488,7 @@ function Hero({ onBook }: { onBook: () => void }) {
           </button>
           <a
             href="#services"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-lux/30 hover:bg-white/10 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-intuit/30 hover:bg-white/10 hover:text-white"
           >
             Explore Services
           </a>
@@ -502,9 +502,9 @@ function Hero({ onBook }: { onBook: () => void }) {
           className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs font-medium uppercase tracking-[0.15em] text-slate-400"
         >
           <span>35+ Services</span>
-          <span className="hidden text-lux/50 sm:inline">&#9670;</span>
+          <span className="hidden text-intuit/50 sm:inline">&#9670;</span>
           <span>One Point of Contact</span>
-          <span className="hidden text-lux/50 sm:inline">&#9670;</span>
+          <span className="hidden text-intuit/50 sm:inline">&#9670;</span>
           <span>More Time for What Matters</span>
         </motion.div>
 
@@ -534,7 +534,7 @@ function Hero({ onBook }: { onBook: () => void }) {
           <span className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-slate-400">
             Scroll
           </span>
-          <ArrowDown className="h-4 w-4 text-lux/60" />
+          <ArrowDown className="h-4 w-4 text-intuit/60" />
         </motion.div>
       </motion.div>
     </section>
@@ -717,12 +717,12 @@ function Services({ onBook }: { onBook: () => void }) {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.25em] text-lux">
+          <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.25em] text-intuit">
             Just Tell Us What You Need
           </span>
           <h2 className="font-baskerville text-3xl font-bold text-white sm:text-5xl">
             Most Requested{" "}
-            <span className="bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-intuit to-intuit-light bg-clip-text text-transparent">
               Concierge Services
             </span>
           </h2>
@@ -741,14 +741,14 @@ function Services({ onBook }: { onBook: () => void }) {
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.15 + i * 0.05 }}
-              className="group flex flex-col items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-lux/20 hover:bg-white/5 sm:p-6"
+              className="group flex flex-col items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-intuit/20 hover:bg-white/5 sm:p-6"
             >
               <PhosphorIcon
                 name={service.icon}
                 gradientId={`svc-${service.icon}`}
                 className="h-12 w-12 transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14"
               />
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-300 transition-colors duration-300 group-hover:text-lux sm:text-xs">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-300 transition-colors duration-300 group-hover:text-intuit sm:text-xs">
                 {service.label}
               </span>
             </motion.button>
@@ -829,7 +829,7 @@ function Services({ onBook }: { onBook: () => void }) {
             href={TEXT_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-xl border border-lux/25 bg-lux/[0.06] px-6 py-3.5 text-sm font-semibold text-lux transition-all duration-300 hover:border-lux/50 hover:bg-lux/[0.12] hover:shadow-lg hover:shadow-lux/10"
+            className="group inline-flex items-center gap-2 rounded-xl border border-intuit/25 bg-intuit/[0.06] px-6 py-3.5 text-sm font-semibold text-intuit transition-all duration-300 hover:border-intuit/50 hover:bg-intuit/[0.12] hover:shadow-lg hover:shadow-intuit/10"
           >
             <CallBellIcon
               className="h-4 w-4 transition-transform duration-300 group-hover:scale-110"
@@ -924,7 +924,7 @@ function OnSitePresence() {
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-navy-900 px-6 py-20 lg:py-24">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lux/15 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-intuit/15 to-transparent" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(1,168,82,0.05)_0%,transparent_60%)]" />
 
       <motion.div
@@ -934,11 +934,11 @@ function OnSitePresence() {
         className="relative mx-auto max-w-3xl text-center"
       >
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-white/[0.08] bg-white/5 backdrop-blur-sm">
-          <MapPin className="h-7 w-7 text-lux" />
+          <MapPin className="h-7 w-7 text-intuit" />
         </div>
         <h2 className="font-baskerville text-3xl font-bold text-white sm:text-4xl">
           On-Site{" "}
-          <span className="bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-intuit to-intuit-light bg-clip-text text-transparent">
             Concierge Presence
           </span>
         </h2>
@@ -1054,7 +1054,7 @@ function FaqItem({
         <span
           className={cn(
             "font-poppins text-base font-semibold transition-colors duration-300 sm:text-lg",
-            isOpen ? "text-lux" : "text-white group-hover:text-lux"
+            isOpen ? "text-intuit" : "text-white group-hover:text-intuit"
           )}
         >
           {faq.question}
@@ -1062,7 +1062,7 @@ function FaqItem({
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="shrink-0 text-lux"
+          className="shrink-0 text-intuit"
         >
           <PhosphorIcon
             name="caret-down"
@@ -1109,7 +1109,7 @@ function Faq() {
       id="faq"
       className="relative scroll-mt-20 overflow-hidden bg-navy-900 px-6 py-20 lg:py-28"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lux/15 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-intuit/15 to-transparent" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(197,203,212,0.05)_0%,transparent_60%)]" />
 
       <div className="relative mx-auto max-w-3xl">
@@ -1119,12 +1119,12 @@ function Faq() {
           transition={{ duration: 0.8 }}
           className="mb-10 text-center"
         >
-          <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-lux">
+          <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-intuit">
             Good to Know
           </span>
           <h2 className="font-baskerville text-4xl font-bold text-white sm:text-5xl">
             Frequently Asked{" "}
-            <span className="bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-intuit to-intuit-light bg-clip-text text-transparent">
               Questions
             </span>
           </h2>
@@ -1160,7 +1160,7 @@ function Faq() {
             href={TEXT_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-xl border border-lux/25 bg-lux/[0.06] px-6 py-3.5 text-sm font-semibold text-lux transition-all duration-300 hover:border-lux/50 hover:bg-lux/[0.12] hover:shadow-lg hover:shadow-lux/10"
+            className="group inline-flex items-center gap-2 rounded-xl border border-intuit/25 bg-intuit/[0.06] px-6 py-3.5 text-sm font-semibold text-intuit transition-all duration-300 hover:border-intuit/50 hover:bg-intuit/[0.12] hover:shadow-lg hover:shadow-intuit/10"
           >
             <CallBellIcon
               className="h-4 w-4 transition-transform duration-300 group-hover:scale-110"
@@ -1185,7 +1185,7 @@ function FinalCta({ onBook }: { onBook: () => void }) {
     <section ref={ref} className="relative overflow-hidden bg-navy-900 px-6 py-24 lg:py-28">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(197,203,212,0.06)_0%,transparent_60%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lux/15 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-intuit/15 to-transparent" />
       </div>
 
       <motion.div
@@ -1194,14 +1194,14 @@ function FinalCta({ onBook }: { onBook: () => void }) {
         transition={{ duration: 0.8 }}
         className="relative mx-auto max-w-3xl text-center"
       >
-        <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-lux">
+        <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-intuit">
           Intuit Life Admin Concierge
         </span>
         <h2 className="font-baskerville text-4xl font-bold text-white sm:text-5xl">
           What can we take
           {/* Forced break: left to wrap, "today?" orphans onto its own line */}
           <br />
-          <span className="bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-intuit to-intuit-light bg-clip-text text-transparent">
             off your list today?
           </span>
         </h2>
@@ -1219,7 +1219,7 @@ function FinalCta({ onBook }: { onBook: () => void }) {
             href={TEXT_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-lux/30 hover:bg-white/10 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-intuit/30 hover:bg-white/10 hover:text-white"
           >
             <CallBellIcon className="h-4 w-4" gradientId="bell-cta" />
             Ask Your Concierge
@@ -1231,7 +1231,7 @@ function FinalCta({ onBook }: { onBook: () => void }) {
           href="tel:+16787022678"
           className="group mt-8 inline-flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
         >
-          <Phone className="h-3.5 w-3.5 text-lux/60" />
+          <Phone className="h-3.5 w-3.5 text-intuit/60" />
           Call or text anytime: {" "}
           <span className="font-semibold text-slate-300 group-hover:text-white">
             (678) 702-2678
