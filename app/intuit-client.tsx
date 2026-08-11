@@ -122,6 +122,15 @@ const stats = [
 
 const INSTAGRAM_URL = "https://www.instagram.com/atlantahomeconcierge/";
 
+/* Google Business Profile. Built as a Maps search on the name plus the full
+   address rather than a place id, which is not recorded anywhere in the
+   project. It lands on the listing, where the reviews live, and opens the
+   Maps app on a phone. Swap for the g.page short link from the Google
+   Business dashboard if a direct one is ever needed. */
+const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent("Atlanta Home Concierge, 2626 Peachtree Rd NW, Atlanta, GA 30305");
+
 /* Client testimonials, carried over verbatim from the AHC site's own
    testimonials section. Kept as static content so the section never depends
    on a third-party widget loading. */
@@ -1010,7 +1019,7 @@ function Testimonials() {
           className="mt-10 text-center"
         >
           <a
-            href="https://www.atlantahomeconcierge.com/reviews"
+            href={GOOGLE_REVIEWS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 text-sm font-semibold text-navy-900 transition-colors hover:text-green-emerald"
