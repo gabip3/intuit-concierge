@@ -359,12 +359,22 @@ function Hero({ onBook }: { onBook: () => void }) {
             transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="inline-block"
           >
-            &ldquo;Can you take care{" "}
-          </motion.span>{" "}
+            &ldquo;Can you take
+          </motion.span>
+          {/* Forced break so the second line reads "care of this?" */}
+          <br />
           <motion.span
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-block"
+          >
+            care
+          </motion.span>{" "}
+          <motion.span
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="inline-block bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent"
           >
             of this?&rdquo;
