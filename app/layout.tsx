@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, DM_Serif_Display, Poppins } from "next/font/google";
+import {
+  Libre_Baskerville,
+  DM_Serif_Display,
+  Poppins,
+} from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+// Libre Baskerville carries the headings. Only 400 and 700 exist, so display
+// headings render at font-bold rather than an in-between weight.
+const baskerville = Libre_Baskerville({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-baskerville-src",
   display: "swap",
+  weight: ["400", "700"],
 });
 
 const dmSerif = DM_Serif_Display({
@@ -15,13 +22,12 @@ const dmSerif = DM_Serif_Display({
   weight: ["400"],
 });
 
-// Poppins carries every heading on this site. 700 is included because the
-// display headings render at font-bold.
+// Poppins is the body face for everything that is not a heading.
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins-src",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -51,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${dmSerif.variable} ${poppins.variable}`}
+      className={`${baskerville.variable} ${dmSerif.variable} ${poppins.variable}`}
     >
       <head>
         <meta name="theme-color" content="#222B4A" />

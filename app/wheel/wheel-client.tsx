@@ -157,7 +157,7 @@ function WheelSvg() {
               dominantBaseline="middle"
               fill={labelColor(segment)}
               fontWeight="700"
-              style={{ fontFamily: "var(--font-poppins)" }}
+              style={{ fontFamily: "var(--font-sans)" }}
             >
               <tspan
                 x={labelPoint.x}
@@ -432,7 +432,7 @@ export function WheelClient() {
           className="h-16 w-auto sm:h-20"
           priority
         />
-        <h1 className="mt-4 font-poppins text-4xl font-bold text-white sm:text-5xl">
+        <h1 className="mt-4 font-baskerville text-4xl font-bold text-white sm:text-5xl">
           Spin the{" "}
           <span className="bg-gradient-to-r from-[#26C4D8] to-[#6FC94D] bg-clip-text text-transparent">
             Bell
@@ -564,7 +564,7 @@ export function WheelClient() {
               <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-lux">
                 {result.type === "standard" ? `You Won, ${firstName}` : `Congratulations, ${firstName}!`}
               </p>
-              <h2 className="font-poppins text-3xl font-bold text-white">
+              <h2 className="font-baskerville text-3xl font-bold text-white">
                 {result.prize}
               </h2>
               <p className="mt-3 text-sm text-slate-400">{result.claim}</p>

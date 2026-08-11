@@ -374,7 +374,7 @@ function Hero({ onBook }: { onBook: () => void }) {
         </motion.p>
 
         {/* Headline */}
-        <h1 className="mb-8 font-poppins text-4xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl">
+        <h1 className="mb-8 font-baskerville text-4xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl">
           <motion.span
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -411,7 +411,7 @@ function Hero({ onBook }: { onBook: () => void }) {
           className="mb-10 flex items-center justify-center gap-3"
         >
           <CallBellIcon className="h-8 w-8 sm:h-10 sm:w-10" gradientId="bell-hero" />
-          <p className="font-poppins text-2xl font-bold text-white sm:text-3xl">
+          <p className="font-baskerville text-2xl font-bold text-white sm:text-3xl">
             Your Concierge.
           </p>
         </motion.div>
@@ -525,7 +525,7 @@ function QuickActions({ onBook }: { onBook: () => void }) {
           transition={{ duration: 0.7 }}
           className="mb-8 text-center"
         >
-          <h2 className="font-poppins text-2xl font-bold text-navy-900 sm:text-3xl">
+          <h2 className="font-baskerville text-2xl font-bold text-navy-900 sm:text-3xl">
             Your Intuit benefits don&apos;t stop at{" "}
             <span className="bg-gradient-to-r from-[#26C4D8] to-[#6FC94D] bg-clip-text text-transparent">
               the office.
@@ -609,7 +609,7 @@ function YourConcierge() {
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-green-emerald">
             Powered by Atlanta Home Concierge
           </span>
-          <h2 className="font-poppins text-4xl font-bold text-navy-900 sm:text-5xl">
+          <h2 className="font-baskerville text-4xl font-bold text-navy-900 sm:text-5xl">
             Your{" "}
             <span className="bg-gradient-to-r from-[#26C4D8] to-[#6FC94D] bg-clip-text text-transparent">
               Concierge
@@ -676,7 +676,7 @@ function Services({ onBook }: { onBook: () => void }) {
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.25em] text-lux">
             Just Tell Us What You Need
           </span>
-          <h2 className="font-poppins text-3xl font-bold text-white sm:text-5xl">
+          <h2 className="font-baskerville text-3xl font-bold text-white sm:text-5xl">
             Most Requested{" "}
             <span className="bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent">
               Concierge Services
@@ -744,7 +744,7 @@ function Services({ onBook }: { onBook: () => void }) {
                   gradientId="svc-detail"
                   className="mx-auto mb-4 h-16 w-16"
                 />
-                <h3 className="font-poppins text-2xl font-bold text-white">
+                <h3 className="font-baskerville text-2xl font-bold text-white">
                   {selected.label}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-slate-300">
@@ -822,7 +822,7 @@ function Privileges({ onBook }: { onBook: () => void }) {
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-green-emerald">
             Exclusive for Intuit Employees
           </span>
-          <h2 className="font-poppins text-4xl font-bold text-navy-900 sm:text-5xl">
+          <h2 className="font-baskerville text-4xl font-bold text-navy-900 sm:text-5xl">
             Your{" "}
             <span className="bg-gradient-to-r from-[#26C4D8] to-[#6FC94D] bg-clip-text text-transparent">
               Privileges
@@ -892,7 +892,7 @@ function OnSitePresence() {
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-white/[0.08] bg-white/5 backdrop-blur-sm">
           <MapPin className="h-7 w-7 text-lux" />
         </div>
-        <h2 className="font-poppins text-3xl font-bold text-white sm:text-4xl">
+        <h2 className="font-baskerville text-3xl font-bold text-white sm:text-4xl">
           On-Site{" "}
           <span className="bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent">
             Concierge Presence
@@ -918,7 +918,7 @@ function GoogleReviews() {
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-green-emerald">
             Our Reviews
           </span>
-          <h2 className="font-poppins text-4xl font-bold text-navy-900 sm:text-5xl">
+          <h2 className="font-baskerville text-4xl font-bold text-navy-900 sm:text-5xl">
             What Clients{" "}
             <span className="bg-gradient-to-r from-[#26C4D8] to-[#6FC94D] bg-clip-text text-transparent">
               Say
@@ -931,6 +931,34 @@ function GoogleReviews() {
           className="ahc-reviews elfsight-app-b8027d55-2831-405c-8b79-49bfd1a692f3"
           data-elfsight-app-lazy
         />
+
+        {/* Shown only while the widget container is still empty, so the
+            section never renders as a blank band if Elfsight fails to load
+            or the plan's view quota runs out. Pure CSS, see globals.css. */}
+        <div className="ahc-reviews-fallback text-center">
+          <div className="mb-4 flex items-center justify-center gap-1.5">
+            {Array.from({ length: 5 }, (_, i) => (
+              <PhosphorIcon
+                key={i}
+                name="star"
+                gradientId={`rev-star-${i}`}
+                className="h-6 w-6"
+              />
+            ))}
+          </div>
+          <p className="text-base text-slate-600">
+            Two decades of five-star service across metro Atlanta.
+          </p>
+          <a
+            href="https://www.atlantahomeconcierge.com/reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-6 inline-flex items-center gap-2 rounded-xl border border-navy-900/15 bg-white px-6 py-3.5 text-sm font-semibold text-navy-900 shadow-sm transition-all duration-300 hover:border-[#6FC94D]/50 hover:shadow-md"
+          >
+            Read Our Reviews
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -1025,7 +1053,7 @@ function Faq() {
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-lux">
             Good to Know
           </span>
-          <h2 className="font-poppins text-4xl font-bold text-white sm:text-5xl">
+          <h2 className="font-baskerville text-4xl font-bold text-white sm:text-5xl">
             Frequently Asked{" "}
             <span className="bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent">
               Questions
@@ -1100,12 +1128,13 @@ function FinalCta({ onBook }: { onBook: () => void }) {
         <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-lux">
           Intuit Life Admin Concierge
         </span>
-        <h2 className="font-poppins text-4xl font-bold text-white sm:text-5xl">
-          What can we take{" "}
+        <h2 className="font-baskerville text-4xl font-bold text-white sm:text-5xl">
+          What can we take
+          {/* Forced break: left to wrap, "today?" orphans onto its own line */}
+          <br />
           <span className="bg-gradient-to-r from-lux via-lux-light to-lux bg-clip-text text-transparent">
-            off your list
-          </span>{" "}
-          today?
+            off your list today?
+          </span>
         </h2>
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">

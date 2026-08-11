@@ -30,10 +30,13 @@
 
   --color-surface: #f8f9fc;
 
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-numeric: var(--font-numeric-serif), Georgia, serif;
-  /* Poppins carries every heading on this site. Generates `font-poppins`. */
+  /* Poppins is the body face, so it backs the default `font-sans` too. */
+  --font-sans: var(--font-poppins-src), "Poppins", system-ui, sans-serif;
   --font-poppins: var(--font-poppins-src), "Poppins", system-ui, sans-serif;
+  /* Libre Baskerville carries the headings. Generates `font-baskerville`. */
+  --font-baskerville: var(--font-baskerville-src), "Libre Baskerville", Georgia,
+    serif;
+  --font-numeric: var(--font-numeric-serif), Georgia, serif;
 }
 
 * {
@@ -67,4 +70,11 @@ body {
    the stable prefix rather than the full generated name. */
 .ahc-reviews [class*="ReviewAuthorName"] {
   color: var(--color-navy-900) !important;
+}
+
+/* The widget injects its markup into the container. Until it does, the
+   container stays empty and the fallback shows; the moment anything lands
+   inside, the fallback hides itself. No JavaScript involved. */
+.ahc-reviews:not(:empty) + .ahc-reviews-fallback {
+  display: none;
 }
