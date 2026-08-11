@@ -721,7 +721,9 @@ function Services({ onBook }: { onBook: () => void }) {
             Just Tell Us What You Need
           </span>
           <h2 className="font-baskerville text-3xl font-bold text-white sm:text-5xl">
-            Most Requested{" "}
+            Most Requested
+            {/* Forced break: left to wrap, "Services" orphans onto line three */}
+            <br />
             <span className="bg-gradient-to-r from-intuit to-intuit-light bg-clip-text text-transparent">
               Concierge Services
             </span>
