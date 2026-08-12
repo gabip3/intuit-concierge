@@ -70,6 +70,9 @@ export function BookingForm({ onClose, initialService }: BookingFormProps) {
           from_name: "Intuit Lifestyle Services",
           name: `${firstName} ${lastName}`.trim(),
           email,
+          /* Hitting Reply on the notification answers the person who filled
+             the form, not the Web3Forms address. */
+          replyto: email,
           phone,
           service: data.get("service") || "Not specified",
           message: data.get("message") || "",

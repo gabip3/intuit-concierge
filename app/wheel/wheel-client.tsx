@@ -358,6 +358,8 @@ export function WheelClient() {
           name: p.name,
           phone: p.phone,
           email: p.email,
+          /* Hitting Reply on the notification answers the participant. */
+          replyto: p.email,
           prize: segment.prize,
           raffle_entries: String(segment.entries),
         }),
