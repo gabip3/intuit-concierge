@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Trophy, Users, Ticket } from "lucide-react";
+import { ArrowLeft, Trophy, Users, Ticket, Download, Copy, Check } from "lucide-react";
 import { CallBellIcon } from "@/components/icons/call-bell";
 import { loadSpins, type SpinRecord } from "../wheel-data";
 
@@ -55,6 +55,7 @@ export function DrawClient() {
   const [cyclingName, setCyclingName] = useState<string | null>(null);
   const [winner, setWinner] = useState<SpinRecord | null>(null);
   const [showList, setShowList] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     setSpins(loadSpins());
@@ -74,6 +75,58 @@ export function DrawClient() {
 
   const eligible = people.filter((p) => p.entries > 0);
   const totalEntries = eligible.reduce((sum, p) => sum + p.entries, 0);
+
+  /* Every spin, newest last, one row each. Quotes are doubled so names with
+     commas survive the round trip into a spreadsheet. */
+  function buildCsv(): string {
+    const esc = (v: string | number) => `"${String(v).replace(/"/g, '""')}"`;
+    const header = ["Name", "Phone", "Email", "Prize", "Raffle entries", "Date"];
+    const rows = [...spins]
+      .sort((a, b) => a.ts - b.ts)
+      .map((s) =>
+        [s.name, s.phone, s.email, s.prize, s.entries, new Date(s.ts).toLocaleString()]
+          .map(esc)
+          .join(",")
+      );
+    return [header.map(esc).join(","), ...rows].join("\r\n");
+  }
+
+  function downloadCsv() {
+    const blob = new Blob(["﻿" + buildCsv()], {
+      type: "text/csv;charset=utf-8;",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `ahc-wheel-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  /* Fallback for when a download is awkward to retrieve, which it often is
+     on a tablet: put the same rows on the clipboard to paste anywhere. */
+  async function copyAll() {
+    try {
+      await navigator.clipboard.writeText(buildCsv());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      /* Clipboard blocked (older iOS, no HTTPS): select the text instead so
+         it can be copied by hand. */
+      const ta = document.createElement("textarea");
+      ta.value = buildCsv();
+      ta.style.position = "fixed";
+      ta.style.top = "50%";
+      ta.style.left = "5%";
+      ta.style.width = "90%";
+      ta.style.height = "40%";
+      ta.style.zIndex = "99999";
+      document.body.appendChild(ta);
+      ta.select();
+    }
+  }
 
   function draw() {
     if (drawing || eligible.length === 0) return;
@@ -214,14 +267,37 @@ export function DrawClient() {
           )}
         </button>
 
-        {/* Participants list toggle */}
-        {eligible.length > 0 && (
-          <button
-            onClick={() => setShowList(!showList)}
-            className="mt-6 min-h-11 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500 transition-colors hover:text-slate-300"
-          >
-            {showList ? "Hide participants" : "View participants"}
-          </button>
+        {/* Export and list toggle. Export exists because the Web3Forms email
+            backup cannot be relied on: every spin is on this device, so this
+            is how the leads get off it. */}
+        {spins.length > 0 && (
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <button
+                onClick={downloadCsv}
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-lux/30 bg-lux/[0.08] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-lux transition-colors hover:bg-lux/[0.16]"
+              >
+                <Download className="h-4 w-4" />
+                Download CSV
+              </button>
+              <button
+                onClick={copyAll}
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-300 transition-colors hover:bg-white/10"
+              >
+                {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                {copied ? "Copied" : "Copy all"}
+              </button>
+            </div>
+            <p className="text-[0.65rem] uppercase tracking-[0.12em] text-slate-500">
+              {spins.length} {spins.length === 1 ? "spin" : "spins"} saved on this device
+            </p>
+            <button
+              onClick={() => setShowList(!showList)}
+              className="min-h-11 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500 transition-colors hover:text-slate-300"
+            >
+              {showList ? "Hide participants" : "View participants"}
+            </button>
+          </div>
         )}
         <AnimatePresence>
           {showList && (
