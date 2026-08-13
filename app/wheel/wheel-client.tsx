@@ -15,6 +15,7 @@ import { PHOSPHOR_CALL_BELL_PATH, CallBellIcon } from "@/components/icons/call-b
 import { PhosphorIcon } from "@/components/icons/phosphor";
 import {
   SEGMENTS,
+  pickSegmentIndex,
   type Segment,
   type Participant,
   saveSpin,
@@ -374,7 +375,7 @@ export function WheelClient() {
     setSpinning(true);
     setResult(null);
 
-    const target = Math.floor(Math.random() * SEGMENTS.length);
+    const target = pickSegmentIndex();
     const jitter = Math.random() * 26 - 13;
     const current = totalRotation.current;
     const needed = ((-target * SEG_ANGLE - current) % 360 + 360) % 360;
