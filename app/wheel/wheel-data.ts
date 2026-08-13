@@ -22,18 +22,20 @@ export interface Segment {
    * Set a weight to 0 to take a prize out of circulation entirely: the slice
    * stays on the wheel and simply never wins.
    *
-   * Current totals: 34*6 + 30 + 6 = 240.
-   *   AHC Cup        6/240  = exactly 1 in 40
-   *   Instant Prize  30/240 = exactly 1 in 8, unchanged
-   *   Each entry     34/240 each
+   * Current totals: 581*6 + 90 + 24 = 3600. The numbers look arbitrary
+   * because they are the smallest whole weights that hit both target odds
+   * exactly while dividing evenly across the six entry slices.
+   *   AHC Cup        90/3600 = exactly 1 in 40
+   *   Instant Prize  24/3600 = exactly 1 in 150
+   *   Each entry     581/3600 each, about 16% per slice
    */
   weight: number;
 }
 
 /** Weight presets, named so the intent is obvious at the call site. */
-const ENTRY_WEIGHT = 34;
-const INSTANT_PRIZE_WEIGHT = 30; // unchanged from the original 1-in-8
-const CUP_WEIGHT = 6; // exactly 1 in 40; set to 0 to stop giving cups out
+const ENTRY_WEIGHT = 581;
+const INSTANT_PRIZE_WEIGHT = 24; // exactly 1 in 150, effectively a rare surprise
+const CUP_WEIGHT = 90; // exactly 1 in 40; set either to 0 to retire that prize
 
 export const SEGMENTS: Segment[] = [
   { bells: 1, label: "1 ENTRY", prize: "1 Raffle Entry", claim: "Your name is in the raffle. Good luck!", entries: 1, type: "standard", weight: ENTRY_WEIGHT },
