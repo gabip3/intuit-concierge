@@ -49,12 +49,11 @@ export function BookingForm({ onClose, initialService }: BookingFormProps) {
     if (honeypot.current?.value) return; // bot filled the hidden field
 
     const data = new FormData(e.currentTarget);
-    const firstName = String(data.get("firstName") ?? "").trim();
-    const lastName = String(data.get("lastName") ?? "").trim();
+    const fullName = String(data.get("fullName") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
 
-    if (firstName.length < 2) return setError("Please enter your first name.");
+    if (fullName.length < 2) return setError("Please enter your full name.");
     if (!/^\S+@\S+\.\S+$/.test(email)) return setError("Please enter a valid email.");
     if (phone.replace(/\D/g, "").length < 7) return setError("Please enter a valid phone number.");
 
@@ -66,9 +65,9 @@ export function BookingForm({ onClose, initialService }: BookingFormProps) {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `Intuit Lifestyle Services request from ${firstName} ${lastName}`.trim(),
+          subject: `Intuit Lifestyle Services request from ${fullName}`,
           from_name: "Intuit Lifestyle Services",
-          name: `${firstName} ${lastName}`.trim(),
+          name: fullName,
           email,
           /* Hitting Reply on the notification answers the person who filled
              the form, not the Web3Forms address. */
@@ -157,19 +156,16 @@ export function BookingForm({ onClose, initialService }: BookingFormProps) {
           className="hidden"
         />
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label htmlFor="firstName" className={labelClass}>
-              First name
-            </label>
-            <input id="firstName" name="firstName" autoComplete="given-name" className={inputClass} />
-          </div>
-          <div>
-            <label htmlFor="lastName" className={labelClass}>
-              Last name
-            </label>
-            <input id="lastName" name="lastName" autoComplete="family-name" className={inputClass} />
-          </div>
+        <div>
+          <label htmlFor="fullName" className={labelClass}>
+            Full name
+          </label>
+          <input
+            id="fullName"
+            name="fullName"
+            autoComplete="name"
+            className={inputClass}
+          />
         </div>
 
         <div>
